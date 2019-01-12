@@ -18,95 +18,127 @@ $(document).ready(function (){
     var crystal3= Math.floor(Math.random() * 11) + 1;
     var crystal4= Math.floor(Math.random() * 11) + 1;
 
+
 // Set up global variables
 
-    var yourTotal;
+    var yourTotal = 0;
     var winCount = 0;
     var lossCount = 0;
 
     $("#record").html("Wins: " + "<br>" + "<br>" + "Losses: ");
 
+    $(".totalscore").html("Your Score: ");
+
 // Function to restart the game
     function restart () {
         random = Math.floor(Math.random() * 102 + 19)
         // console.log(random)
-        $("#scoretarget").html(random); 
+        $("#scoretarget").html("Total Target: " + random); 
         crystal1 = Math.floor(Math.random() * 11) + 1;
         crystal2 = Math.floor(Math.random() * 11) + 1;
         crystal3 = Math.floor(Math.random() * 11) + 1;
         crystal4 = Math.floor(Math.random() * 11) + 1;
         yourTotal = 0;
-        $("#scoretarget").html(yourTotal);
+        $("#scoretarget").html("Total Target: " + random);
+        $(".totalscore").html("Your Score: " + yourTotal);
     }
 
 //Show that the player wins
 function winner () {
     winCount++;
-    $("#record").html("Win: " + winCount);
+    $("#record").html("Wins: " + winCount + "<br>" + "<br>" + "Losses: " + lossCount);
     restart();
     };
    
 //Show that the player loses
 function loser () {
     lossCount++;
-    $("#record").html(lossCount);
+    $("#record").html("Wins: " + winCount + "<br>" + "<br>" + "Losses: " + lossCount);
     restart();
     };
 
 //Create the on-click events for the crystal buttons
-$(".crystal1").on('click', function() {
-    yourTotal = yourTotal + crystal1;
-    $("#record").html("Wins: " + winCount + "<br>" + "<br>" + "Losses: " + lossCount);
+$('.crystal1').on("click", function() {
+    yourTotal = yourTotal + crystal1 + crystal2 + crystal3 + crystal4;
+    console.log("New yourTotal= " + yourTotal)
+    $(".totalscore").html("Your Score: " + yourTotal);
 
-//conditional statements
+
+    //conditional statement
     if (yourTotal == randTarget) {
+        alert("You Win!");
+        $("#scoretarget").html("Total Target: " + randTarget)
         winner();
     }
     else if (yourTotal > randTarget) {
+        alert("You loser!");
+        $("#scoretarget").html("Total Target: " + randTarget)
         loser();
     }
+});
+$('.crystal2').on('click', function() {
+    yourTotal += crystal2;
+    console.log("New yourTotal= " + yourTotal);
+    $(".totalscore").html("Your Score: " + yourTotal);
 
+    
+
+    //conditional statements
+    if (yourTotal == randTarget) {
+        alert("You Win!");    
+        $("#scoretarget").html("Total Target: " + randTarget)
+    winner();
+    }
+    else if (yourTotal > randTarget) {
+        alert("You loser!");
+        $("#scoretarget").html("Total Target: " + randTarget)
+    loser();
+}
 });
 
-$(".crystal2").on('click', function() {
-    yourTotal = yourTotal + crystal2;
-    $("#record").html("Wins: " + winCount + "<br>" + "<br>" + "Losses: " + lossCount);
+$('.crystal3').on('click', function() {
+    yourTotal += crystal3;
+    console.log("New yourTotal= " + yourTotal)
+    $(".totalscore").html("Your Score: " + yourTotal);
+ 
+
 //conditional statements
     if (yourTotal == randTarget) {
-        winner();
+        alert("You Win!");
+        $("#scoretarget").html("Total Target: " + randTarget)
+    winner();
     }
-
     else if (yourTotal > randTarget) {
-        loser();
+        alert("You loser!");
+        $("#scoretarget").html("Total Target: " + randTarget)
+    loser();
     }
 });
 
-$(".crystal3").on('click', function() {
-    yourTotal = yourTotal + crystal3;
-    $("#record").html("Wins: " + winCount + "<br>" + "<br>" + "Losses: " + lossCount);
+$('.crystal4').on('click', function() {
+    yourTotal += crystal4;
+    console.log("New yourTotal= " + yourTotal)
+    $(".totalscore").html("Your Score: " + yourTotal);
+
+
 //conditional statements
     if (yourTotal == randTarget) {
-        winner();
+        alert("You Win!");
+        $("#scoretarget").html("Total Target: " + randTarget)
+    winner();
     }
-
     else if (yourTotal > randTarget) {
-        loser();
-    }
+        alert("You loser!")
+        $("#scoretarget").html("Total Target: " + randTarget)
+    loser();
+}
 });
 
-$(".crystal4").on('click', function() {
-    yourTotal = yourTotal + crystal4;
-    $("#record").html("Wins: " + winCount + "<br>" + "<br>" + "Losses: " + lossCount);
-//conditional statements
 });
-    if (yourTotal == randTarget) {
-        winner();
-    }
 
-    else if (yourTotal > randTarget) {
-        loser();
-    }
-})
+
+
+   
 
 
 
